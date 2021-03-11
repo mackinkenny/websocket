@@ -22,22 +22,21 @@
     export default {
         data(){
             return {
-                users: null,
+                users: [],
             }
         },
 
         mounted() {
-            Echo.join('user')
-            .here((users) => {
-                this.users = users
-            })
-            .joining((user) => {
-                this.users.push(user)
-            })
-            .leaving((user) => {
-                this.users.splice(this.users.indexOf(user),1)
-            })
-
+            Echo.join('users')
+                .here(users => {
+                    this.users = users;
+                })
+                .joining(user => {
+                    this.users.push(user);
+                })
+                .leaving(user => {
+                    this.users.this.users.filter(u => u.id !== user.id);
+                })
         }
     }
 </script>
